@@ -5,6 +5,8 @@ import { LoginComponent } from './modules/login';
 import { SignupComponent } from './modules/signup';
 import { HomeComponent } from './modules/home';
 
+import { LoggedInGuard, AuthGuard } from '@app/core';
+
 const routes: Routes = [
   {
     path: '',
@@ -13,15 +15,18 @@ const routes: Routes = [
   },
   { 
     path: 'login', 
-    component: LoginComponent 
+    component: LoginComponent,
+    canActivate: [ AuthGuard ]
   },
   { 
     path: 'signup', 
-    component: SignupComponent 
+    component: SignupComponent,
+    canActivate: [ AuthGuard ]
   },
   { 
     path: 'home', 
-    component: HomeComponent 
+    component: HomeComponent,
+    canActivate: [ LoggedInGuard ] 
   },    
   {
     path: '**',
